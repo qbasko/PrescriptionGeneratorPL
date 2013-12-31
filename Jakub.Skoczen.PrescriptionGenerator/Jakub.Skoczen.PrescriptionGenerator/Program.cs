@@ -16,7 +16,7 @@ namespace Jakub.Skoczen.PrescriptionGenerator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Prescription());
+            Application.Run(new PrescriptionForm());
         }
     }
 }

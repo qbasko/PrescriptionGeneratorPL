@@ -1,6 +1,6 @@
 ﻿namespace Jakub.Skoczen.PrescriptionGenerator
 {
-    partial class Prescription
+    partial class PrescriptionForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.Name = new System.Windows.Forms.TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrescriptionForm));
+            this.NameTxtBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.LastName = new System.Windows.Forms.TextBox();
@@ -65,6 +66,7 @@
             this.DoctorsIdErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.PermissionsErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.ChronicDiseasesErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NameErrorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LastNameErrorProvider)).BeginInit();
@@ -79,13 +81,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.ChronicDiseasesErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
-            // Name
+            // NameTxtBox
             // 
-            this.Name.Location = new System.Drawing.Point(88, 37);
-            this.Name.Name = "Name";
-            this.Name.Size = new System.Drawing.Size(100, 20);
-            this.Name.TabIndex = 0;
-            this.Name.Validating += new System.ComponentModel.CancelEventHandler(this.Name_Validating);
+            this.NameTxtBox.Location = new System.Drawing.Point(88, 37);
+            this.NameTxtBox.Name = "NameTxtBox";
+            this.NameTxtBox.Size = new System.Drawing.Size(100, 20);
+            this.NameTxtBox.TabIndex = 0;
+            this.NameTxtBox.Validating += new System.ComponentModel.CancelEventHandler(this.NameTxtBox_Validating);
             // 
             // label1
             // 
@@ -110,7 +112,7 @@
             this.LastName.Location = new System.Drawing.Point(88, 63);
             this.LastName.Name = "LastName";
             this.LastName.Size = new System.Drawing.Size(100, 20);
-            this.LastName.TabIndex = 2;
+            this.LastName.TabIndex = 1;
             this.LastName.Validating += new System.ComponentModel.CancelEventHandler(this.LastName_Validating);
             // 
             // label3
@@ -128,7 +130,7 @@
             this.BirthDate.Location = new System.Drawing.Point(88, 116);
             this.BirthDate.Name = "BirthDate";
             this.BirthDate.Size = new System.Drawing.Size(100, 20);
-            this.BirthDate.TabIndex = 5;
+            this.BirthDate.TabIndex = 3;
             this.BirthDate.Validating += new System.ComponentModel.CancelEventHandler(this.BirthDate_Validating);
             // 
             // Location
@@ -136,7 +138,7 @@
             this.Location.Location = new System.Drawing.Point(88, 142);
             this.Location.Name = "Location";
             this.Location.Size = new System.Drawing.Size(100, 20);
-            this.Location.TabIndex = 6;
+            this.Location.TabIndex = 4;
             this.Location.Validating += new System.ComponentModel.CancelEventHandler(this.Location_Validating);
             // 
             // label4
@@ -163,7 +165,7 @@
             this.Pesel.Mask = "00000000000";
             this.Pesel.Name = "Pesel";
             this.Pesel.Size = new System.Drawing.Size(100, 20);
-            this.Pesel.TabIndex = 10;
+            this.Pesel.TabIndex = 2;
             this.Pesel.Validating += new System.ComponentModel.CancelEventHandler(this.Pesel_Validating);
             // 
             // label6
@@ -180,7 +182,7 @@
             this.Permissions.Location = new System.Drawing.Point(290, 89);
             this.Permissions.Name = "Permissions";
             this.Permissions.Size = new System.Drawing.Size(100, 20);
-            this.Permissions.TabIndex = 13;
+            this.Permissions.TabIndex = 7;
             this.Permissions.Validating += new System.ComponentModel.CancelEventHandler(this.Permissions_Validating);
             // 
             // label7
@@ -197,7 +199,7 @@
             this.NFZBranch.Location = new System.Drawing.Point(290, 63);
             this.NFZBranch.Name = "NFZBranch";
             this.NFZBranch.Size = new System.Drawing.Size(100, 20);
-            this.NFZBranch.TabIndex = 11;
+            this.NFZBranch.TabIndex = 6;
             this.NFZBranch.Validating += new System.ComponentModel.CancelEventHandler(this.NFZBranch_Validating);
             // 
             // label8
@@ -214,7 +216,7 @@
             this.ChronicDiseases.Location = new System.Drawing.Point(290, 115);
             this.ChronicDiseases.Name = "ChronicDiseases";
             this.ChronicDiseases.Size = new System.Drawing.Size(100, 20);
-            this.ChronicDiseases.TabIndex = 15;
+            this.ChronicDiseases.TabIndex = 8;
             this.ChronicDiseases.Validating += new System.ComponentModel.CancelEventHandler(this.ChronicDiseases_Validating);
             // 
             // label9
@@ -232,7 +234,7 @@
             this.PrescriptionInfo.Multiline = true;
             this.PrescriptionInfo.Name = "PrescriptionInfo";
             this.PrescriptionInfo.Size = new System.Drawing.Size(302, 87);
-            this.PrescriptionInfo.TabIndex = 18;
+            this.PrescriptionInfo.TabIndex = 5;
             this.PrescriptionInfo.Validating += new System.ComponentModel.CancelEventHandler(this.PrescriptionInfo_Validating);
             // 
             // label10
@@ -249,7 +251,7 @@
             this.DoctorsId.Location = new System.Drawing.Point(149, 261);
             this.DoctorsId.Name = "DoctorsId";
             this.DoctorsId.Size = new System.Drawing.Size(100, 20);
-            this.DoctorsId.TabIndex = 19;
+            this.DoctorsId.TabIndex = 9;
             this.DoctorsId.Validating += new System.ComponentModel.CancelEventHandler(this.DoctorsId_Validating);
             // 
             // RealizationFromDate
@@ -258,7 +260,7 @@
             this.RealizationFromDate.Location = new System.Drawing.Point(149, 287);
             this.RealizationFromDate.Name = "RealizationFromDate";
             this.RealizationFromDate.Size = new System.Drawing.Size(100, 20);
-            this.RealizationFromDate.TabIndex = 22;
+            this.RealizationFromDate.TabIndex = 10;
             this.RealizationFromDate.Validating += new System.ComponentModel.CancelEventHandler(this.RealizationFromDate_Validating);
             // 
             // label11
@@ -275,9 +277,10 @@
             this.PrintBtn.Location = new System.Drawing.Point(19, 323);
             this.PrintBtn.Name = "PrintBtn";
             this.PrintBtn.Size = new System.Drawing.Size(371, 39);
-            this.PrintBtn.TabIndex = 23;
+            this.PrintBtn.TabIndex = 11;
             this.PrintBtn.Text = "Drukuj";
             this.PrintBtn.UseVisualStyleBackColor = true;
+            this.PrintBtn.Click += new System.EventHandler(this.PrintBtn_Click);
             // 
             // menuStrip1
             // 
@@ -294,6 +297,7 @@
             this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
             this.resetToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
             this.resetToolStripMenuItem.Text = "Wyczyść dane";
+            this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
             // 
             // NameErrorProvider
             // 
@@ -339,8 +343,19 @@
             // 
             this.ChronicDiseasesErrorProvider.ContainerControl = this;
             // 
-            // Prescription
+            // printPreviewDialog1
             // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            // 
+            // PrescriptionForm
+            // 
+            this.AcceptButton = this.PrintBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(408, 373);
@@ -366,10 +381,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.LastName);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.Name);
+            this.Controls.Add(this.NameTxtBox);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Prescription";
+            this.Name = "PrescriptionForm";
             this.Text = "Recepta";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -391,7 +406,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox Name;
+        private System.Windows.Forms.TextBox NameTxtBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox LastName;
@@ -427,6 +442,7 @@
         private System.Windows.Forms.ErrorProvider DoctorsIdErrorProvider;
         private System.Windows.Forms.ErrorProvider PermissionsErrorProvider;
         private System.Windows.Forms.ErrorProvider ChronicDiseasesErrorProvider;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }
 

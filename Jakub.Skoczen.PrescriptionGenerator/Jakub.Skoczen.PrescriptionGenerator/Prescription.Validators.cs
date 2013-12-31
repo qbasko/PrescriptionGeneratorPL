@@ -9,20 +9,20 @@ using Jakub.Skoczen.PrescriptionGenerator.Properties;
 
 namespace Jakub.Skoczen.PrescriptionGenerator
 {
-   public partial class Prescription:Form
+   public partial class PrescriptionForm:Form
     {
        private void EmptySpaceValidator(TextBox txtBox, CancelEventArgs e, ErrorProvider ep, string errorString)
        {
            if (String.IsNullOrWhiteSpace(txtBox.Text))
            {
                e.Cancel = true;
-               NameErrorProvider.SetError(txtBox, Resources.NameError);
+               ep.SetError(txtBox, errorString);
            }
            else
-               NameErrorProvider.SetError(txtBox, "");
+               ep.SetError(txtBox, String.Empty);
        }
 
-       private void Name_Validating(object sender, CancelEventArgs e)
+       private void NameTxtBox_Validating(object sender, CancelEventArgs e)
        {
            EmptySpaceValidator((TextBox)sender, e, NameErrorProvider, Resources.NameError);
        }
@@ -34,12 +34,32 @@ namespace Jakub.Skoczen.PrescriptionGenerator
 
        private void Pesel_Validating(object sender, CancelEventArgs e)
        {
-
+           if (String.IsNullOrWhiteSpace(((MaskedTextBox)sender).Text))
+           {
+               e.Cancel = true;
+               PeselErrorProvider.SetError((MaskedTextBox)sender, Resources.PeselError);
+           }
+           else
+           {
+               if (!String.IsNullOrWhiteSpace(((MaskedTextBox)sender).Text) && !CheckPesel(((MaskedTextBox)sender).Text))
+               {
+                   e.Cancel = true;
+                   PeselErrorProvider.SetError((MaskedTextBox)sender, Resources.PeselError);
+               }
+               else
+                   PeselErrorProvider.SetError((MaskedTextBox)sender, String.Empty);
+           }
        }
 
        private void BirthDate_Validating(object sender, CancelEventArgs e)
        {
-
+           if (!(((DateTimePicker)sender).Value < DateTime.Today))
+           {
+               e.Cancel = true;
+               BirthdateErrorProvider.SetError((DateTimePicker)sender, Resources.BirthDateError);
+           }
+           else
+               BirthdateErrorProvider.SetError((DateTimePicker)sender, String.Empty);
        }
 
        private void Location_Validating(object sender, CancelEventArgs e)
@@ -50,7 +70,14 @@ namespace Jakub.Skoczen.PrescriptionGenerator
        private void NFZBranch_Validating(object sender, CancelEventArgs e)
        {
            EmptySpaceValidator((TextBox)sender, e, NameErrorProvider, Resources.NameError);
-           //jeszcze sprawdzic czy jest intem
+           int nfz;
+           if (!int.TryParse(((TextBox)sender).Text, out nfz))
+           {
+               e.Cancel = true;
+               NFZBranchErrorProvider.SetError((TextBox)sender, Resources.NFZBranchError);
+           }
+           else
+               NFZBranchErrorProvider.SetError((TextBox)sender, String.Empty);           
        }
 
        private void Permissions_Validating(object sender, CancelEventArgs e)
@@ -75,7 +102,13 @@ namespace Jakub.Skoczen.PrescriptionGenerator
 
        private void RealizationFromDate_Validating(object sender, CancelEventArgs e)
        {
-
+           if (!(((DateTimePicker)sender).Value >= DateTime.Today))
+           {
+               e.Cancel = true;
+               RealizationFromDateErrorProvider.SetError((DateTimePicker)sender, Resources.RealizationFromDateError);
+           }
+           else
+               RealizationFromDateErrorProvider.SetError((DateTimePicker)sender, String.Empty);
        }
 
        private bool CheckPesel(string pesel)
