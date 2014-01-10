@@ -67,6 +67,7 @@
             this.PermissionsErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.ChronicDiseasesErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NameErrorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LastNameErrorProvider)).BeginInit();
@@ -230,10 +231,10 @@
             // 
             // PrescriptionInfo
             // 
-            this.PrescriptionInfo.Location = new System.Drawing.Point(88, 168);
+            this.PrescriptionInfo.Location = new System.Drawing.Point(86, 168);
             this.PrescriptionInfo.Multiline = true;
             this.PrescriptionInfo.Name = "PrescriptionInfo";
-            this.PrescriptionInfo.Size = new System.Drawing.Size(302, 87);
+            this.PrescriptionInfo.Size = new System.Drawing.Size(186, 87);
             this.PrescriptionInfo.TabIndex = 5;
             this.PrescriptionInfo.Validating += new System.ComponentModel.CancelEventHandler(this.PrescriptionInfo_Validating);
             // 
@@ -353,9 +354,12 @@
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
             // PrescriptionForm
             // 
-            this.AcceptButton = this.PrintBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(408, 373);
@@ -443,6 +447,7 @@
         private System.Windows.Forms.ErrorProvider PermissionsErrorProvider;
         private System.Windows.Forms.ErrorProvider ChronicDiseasesErrorProvider;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }
 

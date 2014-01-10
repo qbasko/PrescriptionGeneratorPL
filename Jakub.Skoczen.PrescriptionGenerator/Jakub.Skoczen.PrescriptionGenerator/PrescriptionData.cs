@@ -11,7 +11,7 @@ namespace Jakub.Skoczen.PrescriptionGenerator
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Pesel { get; set; }
-        public DateTime BirthDate { get; set; }
+        public byte Age { get; set; }
         public string Location { get; set; }
         public int NFZBranch { get; set; }
         public string Permissions { get; set; }

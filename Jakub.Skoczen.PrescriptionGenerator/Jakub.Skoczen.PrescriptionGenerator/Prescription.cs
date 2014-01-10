@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Zen.Barcode;
 
 namespace Jakub.Skoczen.PrescriptionGenerator
 {
@@ -37,10 +39,46 @@ namespace Jakub.Skoczen.PrescriptionGenerator
             if (this.ValidateChildren())
             {
                 Pesel.ValidateText();
-                printPreviewDialog1.ShowDialog();
+                printPreviewDialog1.Document = printDocument1;
+                printDocument1.DefaultPageSettings.PaperSize = new PaperSize("prescription", 535, 1200);
+                var res = printPreviewDialog1.ShowDialog();
+                if (res == DialogResult.OK)
+                    printDocument1.Print();
             }
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
             
+            PrescriptionData prescriptionData = new PrescriptionData();
+            prescriptionData.Name = NameTxtBox.Text;
+            prescriptionData.LastName = LastName.Text;
+            prescriptionData.Pesel = Pesel.Text;
+            prescriptionData.Age = (byte)Math.Floor((double)(DateTime.Today - BirthDate.Value).Days / 365.0f);
+            prescriptionData.Location = Location.Text;
+            prescriptionData.NFZBranch = int.Parse(NFZBranch.Text);
+            prescriptionData.Permissions = Permissions.Text;
+            prescriptionData.ChronicDiseases = ChronicDiseases.Text;
+            prescriptionData.PresrciptionInfo = PrescriptionInfo.Text;
+            prescriptionData.DoctorsId = DoctorsId.Text;
+            prescriptionData.RealizationFromDate = RealizationFromDate.Value;
+
+            //prescriptionData.Name = "Jan";
+            //prescriptionData.LastName = "Kowalski";
+            //prescriptionData.Pesel = "90041603375";
+            //prescriptionData.Age = 5;
+            //prescriptionData.Location = "Poznań";
+            //prescriptionData.NFZBranch = 15;
+            //prescriptionData.Permissions = "X";
+            //prescriptionData.ChronicDiseases = "X";
+            //prescriptionData.PresrciptionInfo = "AAAAAAAAAAAAAAAAAAAAAAAAA";
+            //prescriptionData.DoctorsId = "DoctorX";
+            //prescriptionData.RealizationFromDate = DateTime.Now.Date;
+
+            PrescriptionGenerator prescriptionGenerator = new PrescriptionGenerator(prescriptionData);
+            prescriptionGenerator.Generate(e.Graphics);
 
         }
     }
 }
+
